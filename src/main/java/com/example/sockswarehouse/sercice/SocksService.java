@@ -43,8 +43,17 @@ public interface SocksService {
      */
     int removeDefectiveSocks(BoxOfSocks boxOfSocks);
 
+    /**
+     * Export socks data to a file
+     * @return file.json
+     * @throws IOException description
+     */
     File exportFile() throws IOException;
 
+    /**
+     * Import socks data from file
+     * @throws IOException description
+     */
     void importFromFile(MultipartFile multipartFile) throws IOException;
 
 }
