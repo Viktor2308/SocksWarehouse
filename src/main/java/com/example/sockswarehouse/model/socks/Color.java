@@ -1,4 +1,4 @@
-package com.example.sockswarehouse.model;
+package com.example.sockswarehouse.model.socks;
 
 
 /**

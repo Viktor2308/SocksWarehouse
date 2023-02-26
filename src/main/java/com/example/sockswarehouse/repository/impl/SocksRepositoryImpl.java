@@ -1,11 +1,13 @@
 package com.example.sockswarehouse.repository.impl;
 
-import com.example.sockswarehouse.model.BoxOfSocks;
-import com.example.sockswarehouse.model.Socks;
+import com.example.sockswarehouse.model.socks.BoxOfSocks;
+import com.example.sockswarehouse.model.socks.Socks;
 import com.example.sockswarehouse.repository.SocksRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -43,6 +45,23 @@ public class SocksRepositoryImpl implements SocksRepository {
     @Override
     public Map<Socks, Integer> getCountAllSocks() {
         return socksHashMap;
+    }
+
+    @Override
+    public List<BoxOfSocks> getList() {
+        List<BoxOfSocks> boxOfSocksArrayList = new ArrayList<>();
+        for(Map.Entry<Socks,Integer> entry : socksHashMap.entrySet()){
+            boxOfSocksArrayList.add(new BoxOfSocks(entry.getKey(), entry.getValue()));
+        }
+        return boxOfSocksArrayList;
+    }
+
+    @Override
+    public void replace(List<BoxOfSocks> boxOfSocks) {
+        socksHashMap.clear();
+        for (BoxOfSocks box : boxOfSocks) {
+            save(box);
+        }
     }
 
 }

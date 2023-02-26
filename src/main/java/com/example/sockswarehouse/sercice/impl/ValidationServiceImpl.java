@@ -1,8 +1,8 @@
 package com.example.sockswarehouse.sercice.impl;
 
-import com.example.sockswarehouse.model.BoxOfSocks;
-import com.example.sockswarehouse.model.Color;
-import com.example.sockswarehouse.model.Size;
+import com.example.sockswarehouse.model.socks.BoxOfSocks;
+import com.example.sockswarehouse.model.socks.Color;
+import com.example.sockswarehouse.model.socks.Size;
 import com.example.sockswarehouse.sercice.ValidationService;
 import org.springframework.stereotype.Service;
 

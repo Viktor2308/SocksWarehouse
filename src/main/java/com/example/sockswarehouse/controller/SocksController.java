@@ -1,9 +1,9 @@
 package com.example.sockswarehouse.controller;
 
 import com.example.sockswarehouse.controller.dto.ResponseDto;
-import com.example.sockswarehouse.model.BoxOfSocks;
-import com.example.sockswarehouse.model.Color;
-import com.example.sockswarehouse.model.Size;
+import com.example.sockswarehouse.model.socks.BoxOfSocks;
+import com.example.sockswarehouse.model.socks.Color;
+import com.example.sockswarehouse.model.socks.Size;
 import com.example.sockswarehouse.sercice.SocksService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

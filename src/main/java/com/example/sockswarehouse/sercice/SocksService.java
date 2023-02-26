@@ -1,8 +1,12 @@
 package com.example.sockswarehouse.sercice;
 
-import com.example.sockswarehouse.model.BoxOfSocks;
-import com.example.sockswarehouse.model.Color;
-import com.example.sockswarehouse.model.Size;
+import com.example.sockswarehouse.model.socks.BoxOfSocks;
+import com.example.sockswarehouse.model.socks.Color;
+import com.example.sockswarehouse.model.socks.Size;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 public interface SocksService {
     /**
@@ -38,5 +42,9 @@ public interface SocksService {
      * @return socks write-off in fact
      */
     int removeDefectiveSocks(BoxOfSocks boxOfSocks);
+
+    File exportFile() throws IOException;
+
+    void importFromFile(MultipartFile multipartFile) throws IOException;
 
 }
