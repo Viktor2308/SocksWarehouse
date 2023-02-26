@@ -21,11 +21,12 @@ public class ValidationServiceImpl implements ValidationService {
     public boolean validate(Color color, Size size, int cottonMin, int cottonMax) {
         return color != null &&
                 size != null &&
-                cottonMin >= 0 &&
-                cottonMax <= 100;
+                checkCotton(cottonMin,cottonMax);
     }
 
     private boolean checkCotton(int min, int max) {
-        return min >= 0 && max <= 100;
+        return min >= 0 &&
+                max <= 100 &&
+                min<=max;
     }
 }
