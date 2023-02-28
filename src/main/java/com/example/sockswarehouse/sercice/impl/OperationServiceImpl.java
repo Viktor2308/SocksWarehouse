@@ -24,8 +24,11 @@ public class OperationServiceImpl implements OperationService {
 
     private final FileService fileService;
     private final OperationRepository operationRepository;
+
     @Value("${path.to.operation.file}")
-    private final Path path = Path.of("${path.to.operation.file}", "operation.json");
+    private final Path path = Path.of("${path.to.data.file}", "operation.json");
+
+
 
 
     @Override

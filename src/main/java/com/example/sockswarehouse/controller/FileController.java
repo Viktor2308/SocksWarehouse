@@ -32,20 +32,20 @@ public class FileController {
     public ResponseEntity<InputStreamResource> downloadSocksFile() {
         try {
             File dataFile = socksService.exportFile();
-                InputStreamResource resource = new InputStreamResource(new FileInputStream(dataFile));
-                return ResponseEntity.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .contentLength(dataFile.length())
-                        .header(HttpHeaders.CONTENT_DISPOSITION,
-                                "attachment; filename=" + dataFile.getName())
-                        .body(resource);
+            InputStreamResource resource = new InputStreamResource(new FileInputStream(dataFile));
+            return ResponseEntity.ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .contentLength(dataFile.length())
+                    .header(HttpHeaders.CONTENT_DISPOSITION,
+                            "attachment; filename=" + dataFile.getName())
+                    .body(resource);
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
     }
 
-    @GetMapping("/import")
+    @GetMapping(value = "/import", consumes = "multipart/form-data")
     @Operation(summary = "Import json data file")
     public ResponseEntity<String> uploadSocksFile(@RequestParam MultipartFile file) {
         try {

@@ -45,7 +45,7 @@ public class OperationController {
         }
     }
 
-    @GetMapping("/import")
+    @GetMapping(value = "/import", consumes = "multipart/form-data")
     @Operation(summary = "Import json data file")
     public ResponseEntity<String> uploadSocksFile(@RequestParam MultipartFile file) {
         try {
