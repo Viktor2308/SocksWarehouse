@@ -1,4 +1,4 @@
-package com.example.sockswarehouse.controller.dto;
+package com.example.sockswarehouse.dto;
 
 import lombok.Data;
 
