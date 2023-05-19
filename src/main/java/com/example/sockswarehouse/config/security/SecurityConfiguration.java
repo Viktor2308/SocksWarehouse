@@ -1,8 +1,12 @@
 package com.example.sockswarehouse.config.security;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
@@ -11,24 +15,26 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
+@Slf4j
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
 public class SecurityConfiguration {
 
     @Bean
-    public SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) {
-        return http
-                .authorizeExchange()
-                .pathMatchers(HttpMethod.GET, "/webjars/swagger-ui/**").permitAll()
-                .pathMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
-                .pathMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
-                .anyExchange().permitAll()
-                .and()
-                .httpBasic()
-                .and()
-                .build();
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .securityMatcher("/webjars/swagger-ui/**")
+                .authorizeHttpRequests(authorize -> authorize
+                        .anyRequest().hasRole("USER")
+                )
+                .httpBasic(withDefaults());
+
+        return http.csrf().disable().build();
     }
 
     @Bean
@@ -45,4 +51,5 @@ public class SecurityConfiguration {
                 .build();
         return new MapReactiveUserDetailsService(user);
     }
+
 }

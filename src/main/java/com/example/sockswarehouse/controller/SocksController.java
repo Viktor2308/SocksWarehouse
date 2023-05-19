@@ -75,7 +75,7 @@ public class SocksController {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Socks.class))),
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)})
-    @GetMapping("/v1/socks/{id}")
+    @GetMapping("/v1/socks")
     public Flux<Socks> getAllSocks() {
         return Flux.empty()
                 .doOnEach(LoggingUtils.logOnComplete(x -> log.info("Before socks obtained")))
